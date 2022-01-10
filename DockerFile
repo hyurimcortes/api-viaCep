@@ -1,0 +1,25 @@
+# estagio 1 building o codigo
+FROM node:14.18 as builder
+
+WORKDIR /usr/home/hyuri/Documentos/estudos/backend/app
+COPY package*.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+
+# estagio 2
+FROM node:14.18
+WORKDIR /usr/home/hyuri/Documentos/estudos/backend/app
+COPY package*.json ./
+RUN npm install --production
+
+COPY --from=builder /usr/home/hyuri/Documentos/estudos/backend/app/dist ./dist
+
+COPY .env .
+
+WORKDIR /
+
+EXPOSE 3333 
+
+CMD node dist/src/index.js
