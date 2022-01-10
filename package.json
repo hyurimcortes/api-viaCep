@@ -1,5 +1,5 @@
 {
-  "name": "proximo-back-end",
+  "name": "via-cep-back",
   "version": "1.1.0",
   "main": "index.js",
   "bin": "bin.js",
